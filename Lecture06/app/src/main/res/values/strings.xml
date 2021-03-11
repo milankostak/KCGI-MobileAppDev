@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Layouts</string>
+    <string name="tab_linear">Linear</string>
+    <string name="tab_relative">Relative</string>
+    <string name="tab_constraint">Constraint</string>
+    <string name="to">To</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
+    <string name="send_message">Send message</string>
+    <string name="save">Save</string>
+</resources>

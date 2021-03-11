@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".ui.main.fragments.LinearFragment">
+
+    <EditText
+        android:id="@+id/to_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:autofillHints="text"
+        android:hint="@string/to"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/subject_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/to_relative"
+        android:layout_marginTop="8dp"
+        android:autofillHints="emailSubject"
+        android:hint="@string/subject"
+        android:inputType="textEmailSubject" />
+
+    <EditText
+        android:id="@+id/message_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_relative"
+        android:layout_below="@id/subject_relative"
+        android:layout_marginTop="8dp"
+        android:autofillHints="text"
+        android:gravity="start|top"
+        android:hint="@string/message"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/button_relative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:text="@string/send" />
+
+</RelativeLayout>
