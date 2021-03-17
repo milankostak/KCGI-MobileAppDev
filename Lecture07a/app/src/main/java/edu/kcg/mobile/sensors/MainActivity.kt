@@ -6,13 +6,17 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.View
+import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.switchmaterial.SwitchMaterial
+
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
@@ -32,6 +36,27 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
         gravity = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY)
+
+        println("All sensors of TYPE_ACCELEROMETER:")
+        sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER).forEach { println(it) }
+        println()
+        println("All sensors:")
+        sensorManager.getSensorList(Sensor.TYPE_ALL).forEach { println(it) }
+        println()
+
+//        accelerometer.maximumRange
+//        accelerometer.minDelay
+//        accelerometer.name
+//        accelerometer.power
+//        accelerometer.resolution
+
+        findViewById<Button>(R.id.vibrate_button).setOnClickListener {
+            val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+//            vibrator.vibrate(VibrationEffect.createOneShot(1000, 10))
+//            vibrator.vibrate(VibrationEffect.createOneShot(1000, 255))
+            val pattern = longArrayOf(500, 1000, 1000, 2000) // start after 0.5s, vibrate for 1s, pause for 1s, vibrate for 2s, ...
+            vibrator.vibrate(VibrationEffect.createWaveform(pattern, -1))
+        }
     }
 
     override fun onResume() {
@@ -86,8 +111,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         if (element.y > maxY) element.y = maxY.toFloat()
     }
 
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        println(accuracy)
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+        print("Accuracy for the sensor ${sensor.name} has changed to ")
+        when (accuracy) {
+            SensorManager.SENSOR_STATUS_ACCURACY_LOW -> println("SENSOR_STATUS_ACCURACY_LOW")
+            SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM -> println("SENSOR_STATUS_ACCURACY_MEDIUM")
+            SensorManager.SENSOR_STATUS_ACCURACY_HIGH -> println("SENSOR_STATUS_ACCURACY_HIGH")
+            SensorManager.SENSOR_STATUS_UNRELIABLE -> println("SENSOR_STATUS_UNRELIABLE")
+        }
     }
 
     fun onSwitchChange(view: View) {
