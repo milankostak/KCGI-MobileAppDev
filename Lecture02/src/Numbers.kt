@@ -28,8 +28,8 @@ fun main() {
     println("Short size: ${Short.SIZE_BYTES}")
     println("Int size: ${Int.SIZE_BYTES}")
     println("Long size: ${Long.SIZE_BYTES}")
-    println("Float size: ${Float.SIZE_BYTES}")
-    println("Double size: ${Double.SIZE_BYTES}")
+//    println("Float size: ${Float.SIZE_BYTES}") // Kotlin 1.4+
+//    println("Double size: ${Double.SIZE_BYTES}") // Kotlin 1.4+
 
     println(FOO)
 }
