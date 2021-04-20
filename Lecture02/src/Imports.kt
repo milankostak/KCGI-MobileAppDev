@@ -3,7 +3,7 @@ import kotlin.math.floor
 import kotlin.math.round
 
 fun main() {
-    println(round(7.6))
-    println(floor(7.6))
-    println(ceil(7.6))
+    println(round(7.6)) // 8.0
+    println(floor(7.6)) // 7.0
+    println(ceil(7.1)) // 8.0
 }

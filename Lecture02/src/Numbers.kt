@@ -8,11 +8,11 @@ fun main() {
     val k: Long = 9_223_372_036_854_775_807 // Long.MAX_VALUE
 
     val m: Float = 5F
-//        val n: Float = 5 // won't work, 5 is integer
-//        val o: Float = 5.0 // won't work, 5.0 is double
+//    val n: Float = 5 // won't work, 5 is integer
+//    val o: Float = 5.0 // won't work, 5.0 is double
 
     val p: Double = 5.0
-//        val q: Double = 5 // won't work, 5 is integer
+//    val q: Double = 5 // won't work, 5 is integer
 
     // correct ways
     val r = 7 // Int type inferred
