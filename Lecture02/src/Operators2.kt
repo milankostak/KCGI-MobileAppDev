@@ -5,6 +5,8 @@ fun main() {
     println(++a) // 7
     println(a) // 7
 
+    println()
+
     var b = 4
     println(b--) // 4
     println(b) // 3

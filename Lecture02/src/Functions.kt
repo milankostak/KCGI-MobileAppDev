@@ -11,7 +11,7 @@ class Functions {
         return "height: $height, name: $name"
     }
 
-    internal fun printInfo() {
+    fun printInfo() {
         println(getInfo())
     }
 
@@ -19,4 +19,12 @@ class Functions {
         // ...
     }
 
+}
+
+fun main() {
+    val a = Functions()
+    a.name = "George"
+    a.printInfo()
+    a.printString("something")
+    a.saveTextToFile("content", "some_other_file.txt")
 }

@@ -9,3 +9,11 @@ class GettersSetters {
         }
 
 }
+
+fun main() {
+    val a = GettersSetters()
+    println(a.description)
+
+    a.description = ""
+    println(a.description)
+}

@@ -1,5 +1,3 @@
-private const val FOO = "foo"
-
 fun main() {
     // numbers
     val h: Byte = 127 // Byte.MAX_VALUE
@@ -8,21 +6,23 @@ fun main() {
     val k: Long = 9_223_372_036_854_775_807 // Long.MAX_VALUE
 
     val m: Float = 5F
-//    val n: Float = 5 // won't work, 5 is integer
+//    val n = 5.toFloat() // won't work, 5 is integer
 //    val o: Float = 5.0 // won't work, 5.0 is double
+    val p = 5.toFloat()
 
-    val p: Double = 5.0
-//    val q: Double = 5 // won't work, 5 is integer
+    val q: Double = 5.0
+//    val r: Double = 5 // won't work, 5 is integer
+    val s = 5.toDouble()
 
     // correct ways
-    val r = 7 // Int type inferred
-    val s = 7F // Float type inferred
-    val t = 7.0 // Double type inferred
+    val t = 7 // Int type inferred
+    val u = 7F // Float type inferred
+    val v = 7.0 // Double type inferred
 
-    val u = Byte.MIN_VALUE
-    println(u)
-    val v = Short.MAX_VALUE
-    println(v)
+    val w = Byte.MIN_VALUE
+    println(w)
+    val x = Short.MAX_VALUE
+    println(x)
 
     println("Byte size: ${Byte.SIZE_BYTES}")
     println("Short size: ${Short.SIZE_BYTES}")
@@ -30,6 +30,4 @@ fun main() {
     println("Long size: ${Long.SIZE_BYTES}")
     println("Float size: ${Float.SIZE_BYTES}")
     println("Double size: ${Double.SIZE_BYTES}")
-
-    println(FOO)
 }
