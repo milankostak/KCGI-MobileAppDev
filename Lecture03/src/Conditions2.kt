@@ -9,6 +9,7 @@ fun main() {
             print("a is $a")
         }
     }
+    println()
 
     when (a) {
         1, 2 -> print("a is 1 or 2")

@@ -23,7 +23,7 @@ fun main() {
         }
     }
 
-    // can be simplified to this:
+    // and can be simplified to this:
     when {
         a > b -> println("a > b")
         a < b -> println("b > a")

@@ -1,18 +1,20 @@
 fun main() {
-    val numbers1 = setOf(1, 2, 3, 4)
+    val numbers1 = setOf(1, 12, 15, 17, 25)
     println("Number of elements: ${numbers1.size}")
     if (numbers1.contains(1)) println("1 is in the set")
     // https://kotlinlang.org/docs/collections-overview.html#set
 
+    println(numbers1) // [1, 12, 15, 17, 25]
     // LinkedHashSet is the default implementation and it preserves order
 
-    val numbers2 = mutableSetOf(1, 2, 3, 45, 67, 16, 17, 18)
+    val numbers2 = mutableSetOf(1, 12, 15, 17, 25)
     numbers2.add(5) // added to the last position
-    println(numbers2) // [1, 2, 3, 45, 67, 16, 17, 18, 5]
+    println(numbers2) // [1, 12, 15, 17, 25, 5]
 
     // HashSet does not preserve order
-    val numbers3 = hashSetOf(1, 2, 3, 45, 67, 16, 17, 18)
-    println(numbers3) // [16, 1, 17, 2, 18, 3, 67, 45]
-    numbers3.add(123) // MIGHT NOT be added at the last position, it is not predictable
-    println(numbers3) // [16, 1, 17, 2, 18, 3, 67, 123, 45]
+    val numbers3 = hashSetOf(1, 12, 15, 17, 25)
+    println(numbers3) // [1, 17, 25, 12, 15] - different order!
+    numbers3.add(25) // is not added
+    numbers3.add(5) // MIGHT NOT be added at the last position, it is not predictable
+    println(numbers3) // [1, 17, 25, 12, 5, 15]
 }
