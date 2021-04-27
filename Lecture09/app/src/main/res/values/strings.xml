@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Database</string>
+    <string name="title_basic_example">Basic example</string>
+    <string name="title_room_example">Room library example</string>
+
+    <string name="go_to_basic">Go to basic example</string>
+    <string name="go_to_room">Go to Room example</string>
+
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="save">Save</string>
+    <string name="list_all">List all</string>
+    <string name="delete_by_name">Delete by name</string>
+    <string name="update_by_name">Update by name</string>
+</resources>
