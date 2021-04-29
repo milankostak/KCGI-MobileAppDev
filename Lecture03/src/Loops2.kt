@@ -3,6 +3,8 @@ fun main() {
 
     for (item in collection) println(item)
 
+    println()
+
     for (i in collection.indices) {
         println("$i - ${collection[i]}")
     }

@@ -5,7 +5,7 @@ fun main() {
         1 -> print("a == 1")
         2 -> print("a == 2")
         else -> { // block is necessary
-            print("a is neither 1 nor 2")
+            println("a is neither 1 nor 2")
             print("a is $a")
         }
     }

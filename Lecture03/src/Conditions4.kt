@@ -19,5 +19,8 @@ fun main() {
     val max3 = if (a > b) a else b
     println(max3)
 
+    // cannot use ternary operator - does not exist in Kotlin
+//    val max4 = (a < b) ? b : a
+
     // https://kotlinlang.org/docs/control-flow.html#if-expression
 }
