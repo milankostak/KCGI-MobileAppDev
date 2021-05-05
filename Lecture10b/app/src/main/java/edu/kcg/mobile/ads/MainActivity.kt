@@ -7,6 +7,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 // Remove the line below after defining your own ad unit ID.
 private const val TOAST_TEXT = "Test ads are being shown. " +
@@ -35,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         currentLevel = START_LEVEL
 
         // Create the InterstitialAd and set the adUnitId (defined in values/strings.xml).
-        interstitialAd = newInterstitialAd()
         loadInterstitial()
 
         loadBannerAd()
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 // Code to be executed when an ad finishes loading.
             }
 
-            override fun onAdFailedToLoad(adError: Int) {
+            override fun onAdFailedToLoad(error: LoadAdError) {
                 // Code to be executed when an ad request fails.
             }
 
@@ -87,49 +88,58 @@ class MainActivity : AppCompatActivity() {
 //                else -> super.onOptionsItemSelected(item)
 //            }
 
-    private fun newInterstitialAd(): InterstitialAd {
-        return InterstitialAd(this).apply {
-            adUnitId = getString(R.string.interstitial_ad_unit_id)
-            adListener = object : AdListener() {
-                override fun onAdLoaded() {
-                    nextLevelButton.isEnabled = true
-                }
-
-                override fun onAdFailedToLoad(errorCode: Int) {
-                    nextLevelButton.isEnabled = true
-                }
-
-                override fun onAdClosed() {
-                    // Proceed to the next level.
-                    goToNextLevel()
-                }
-            }
-        }
-    }
-
     private fun showInterstitial() {
         // Show the ad if it's ready. Otherwise toast and reload the ad.
-        if (interstitialAd?.isLoaded == true) {
-            interstitialAd?.show()
+        if (interstitialAd != null) {
+            setFullscreenCallback()
+            interstitialAd?.show(this)
         } else {
             Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show()
             goToNextLevel()
         }
     }
 
+    private fun setFullscreenCallback() {
+        interstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() {
+                goToNextLevel()
+            }
+
+//            override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+//            }
+//
+//            override fun onAdShowedFullScreenContent() {
+//            }
+        }
+    }
+
     private fun loadInterstitial() {
         // Disable the next level button and load the ad.
         nextLevelButton.isEnabled = false
-        val adRequest = AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template")
-                .build()
-        interstitialAd?.loadAd(adRequest)
+        val adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(
+            this,
+            getString(R.string.interstitial_ad_unit_id),
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(ad: InterstitialAd) {
+                    interstitialAd = ad
+                    nextLevelButton.isEnabled = true
+                }
+
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    interstitialAd = null
+                    nextLevelButton.isEnabled = true
+                }
+
+            }
+        )
     }
 
     private fun goToNextLevel() {
         // Show the next level and reload the ad to prepare for the level after.
         levelTextView.text = "Level " + (++currentLevel)
-        interstitialAd = newInterstitialAd()
         loadInterstitial()
     }
 }
