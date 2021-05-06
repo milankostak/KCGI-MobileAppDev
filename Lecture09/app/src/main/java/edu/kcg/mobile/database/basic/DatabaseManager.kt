@@ -19,7 +19,6 @@ class DatabaseManager(private val db: DatabaseHandler) {
         }
         return db.writableDatabase
             .update(TABLE_USERS, contentValues, "$COLUMN_NAME LIKE ?", listOf(user.name).toTypedArray())
-
     }
 
     fun deleteByName(name: String): Int {
@@ -31,8 +30,7 @@ class DatabaseManager(private val db: DatabaseHandler) {
         val projection = arrayOf(COLUMN_NAME, COLUMN_AGE)
         val sortOrder = "$COLUMN_NAME DESC"
 
-        val cursor = db
-            .writableDatabase
+        val cursor = db.writableDatabase
             .query(TABLE_USERS, projection, null, null, null, null, sortOrder)
 
         val users = mutableListOf<User>()

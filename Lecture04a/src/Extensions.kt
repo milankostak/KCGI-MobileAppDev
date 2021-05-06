@@ -1,5 +1,5 @@
 fun List<String>.getLongestString(): String {
-    return maxByOrNull { it.length } ?: ""
+    return this.maxByOrNull { it.length } ?: ""
 }
 
 fun Int?.addFive(): Int {

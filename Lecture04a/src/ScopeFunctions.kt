@@ -3,7 +3,7 @@ fun main() {
     // this
     str.run {
         println("The receiver string length: $length")
-        //println("The receiver string length: ${this.length}") // does the same
+//        println("The receiver string length: ${this.length}") // does the same
     }
 
     // it
