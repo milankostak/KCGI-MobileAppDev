@@ -9,7 +9,7 @@ fun main() {
     cars.add(Car("Ford", "red", 2015, 82_111.5))
     cars.add(Car("Volkswagen", "red", 2001, 382_142.1))
     cars.add(Car("Volkswagen", "white", 2017, 14680.3, true))
-    cars.add(Car("Suzuki", "red", 2012, 132_999.4))
+    cars.add(Car("Suzuki", "Red", 2012, 132_999.4))
 
     // get all electric cars
     val electricCars = cars.filter { it.electric }
@@ -37,7 +37,7 @@ fun main() {
 
     // get all brands sorted without duplicates
     val brandsWithoutDuplicates = cars
-            .map { it.color }
+            .map { it.color.toLowerCase() }
             .distinct()
             .sorted()
     println(brandsWithoutDuplicates)

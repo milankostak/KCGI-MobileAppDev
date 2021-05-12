@@ -1,5 +1,6 @@
 fun main() {
     val car = Car("Peugeot", "green", 2014).apply {
+//        this.odometer = 1245.0
         odometer = 1245.0
     }
     println(car)

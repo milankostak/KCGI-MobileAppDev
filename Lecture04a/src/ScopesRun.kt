@@ -3,13 +3,13 @@ fun main() {
 //    var string: String? = null
 
     val length = string?.run {
-        println("get length of $this")
+        println("getting the length of '$this' with run")
         length
     } ?: 0
     println(length)
 
     val string2 = string?.apply {
-        println("get length of $this")
+        println("getting the length of '$this' with apply")
         length // does not makes sense here
     } ?: ""
     println(string2)
