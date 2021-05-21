@@ -26,6 +26,6 @@
     <fragment
         android:id="@+id/navigation_settings"
         android:name="edu.kcg.mobile.lecture05app.ui.settings.SettingsFragment"
-        android:label="@string/title_settings"
+        android:label="mobile navigation.xml"
         tools:layout="@layout/fragment_settings" />
 </navigation>
