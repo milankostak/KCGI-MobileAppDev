@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:autofillHints="text"
+        android:autofillHints="emailAddress"
         android:hint="@string/to"
-        android:inputType="text" />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/subject_relative"
@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_gravity="end"
         android:layout_marginTop="8dp"
         android:text="@string/send" />
 

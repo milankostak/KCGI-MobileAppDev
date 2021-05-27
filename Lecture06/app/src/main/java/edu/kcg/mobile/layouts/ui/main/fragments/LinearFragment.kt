@@ -11,8 +11,6 @@ import edu.kcg.mobile.layouts.R
 import edu.kcg.mobile.layouts.ui.main.ARG_SECTION_NUMBER
 import edu.kcg.mobile.layouts.ui.main.PageViewModel
 
-// TODO create abstract parent class
-// TODO observe onStart, onPause, ...
 class LinearFragment : Fragment() {
 
     private lateinit var pageViewModel: PageViewModel
@@ -20,7 +18,7 @@ class LinearFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pageViewModel = ViewModelProvider(this).get(PageViewModel::class.java).apply {
-            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
+            index = arguments?.getInt(ARG_SECTION_NUMBER) ?: 0
         }
     }
 
@@ -31,9 +29,8 @@ class LinearFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_linear, container, false)
         val textView = root.findViewById<TextView>(R.id.message_linear)
-        pageViewModel.text.observe(this) { textView.text = it }
+        textView.text = pageViewModel.getText()
         return root
     }
-
 
 }

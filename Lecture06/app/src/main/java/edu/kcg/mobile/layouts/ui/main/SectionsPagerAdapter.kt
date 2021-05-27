@@ -26,6 +26,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
+        // getItem is called to instantiate the fragment for the given page.
         return when (position) {
             0 -> LinearFragment()
             1 -> RelativeFragment()
@@ -42,6 +43,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     }
 
     override fun getCount(): Int {
+        // Returns number of tabs
         return TAB_TITLES.size
     }
 
