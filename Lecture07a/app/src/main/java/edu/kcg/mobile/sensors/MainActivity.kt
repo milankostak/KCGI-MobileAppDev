@@ -78,7 +78,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         when (event.sensor.type) {
             Sensor.TYPE_ACCELEROMETER -> {
-                findViewById<TextView>(R.id.value).text = event.values[0].toString()
+                val result = event.values.map { it.toString() }.reduce { a, b -> "$a, $b" }
+                findViewById<TextView>(R.id.value).text = result
             }
             Sensor.TYPE_LIGHT -> {
                 if (applyLight) {
@@ -86,17 +87,27 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 }
             }
             Sensor.TYPE_GRAVITY -> {
-                applyGravity(event.values[0], event.values[1])//, event.values[2]) // Z not necessary
+                applyGravity(event.values[0], event.values[1]) // Z value is not necessary
             }
+        }
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+        print("Accuracy for the sensor ${sensor.name} has changed to ")
+        when (accuracy) {
+            SensorManager.SENSOR_STATUS_ACCURACY_LOW -> println("SENSOR_STATUS_ACCURACY_LOW")
+            SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM -> println("SENSOR_STATUS_ACCURACY_MEDIUM")
+            SensorManager.SENSOR_STATUS_ACCURACY_HIGH -> println("SENSOR_STATUS_ACCURACY_HIGH")
+            SensorManager.SENSOR_STATUS_UNRELIABLE -> println("SENSOR_STATUS_UNRELIABLE")
         }
     }
 
     private fun applyGravity(x: Float, y: Float) {
         val element = findViewById<RadioButton>(R.id.radio_button)
-        if (x < 1 || x > 1) {
+        if (x < -1 || x > 1) {
             element.x -= x
         }
-        if (y < 1 || y > 1) {
+        if (y < -1 || y > 1) {
             element.y += y
         }
 
@@ -111,19 +122,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         if (element.y > maxY) element.y = maxY.toFloat()
     }
 
-    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
-        print("Accuracy for the sensor ${sensor.name} has changed to ")
-        when (accuracy) {
-            SensorManager.SENSOR_STATUS_ACCURACY_LOW -> println("SENSOR_STATUS_ACCURACY_LOW")
-            SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM -> println("SENSOR_STATUS_ACCURACY_MEDIUM")
-            SensorManager.SENSOR_STATUS_ACCURACY_HIGH -> println("SENSOR_STATUS_ACCURACY_HIGH")
-            SensorManager.SENSOR_STATUS_UNRELIABLE -> println("SENSOR_STATUS_UNRELIABLE")
-        }
-    }
-
     fun onSwitchChange(view: View) {
-        applyLight = findViewById<SwitchMaterial>(R.id.switch_light).isChecked
+        applyLight = (view as SwitchMaterial).isChecked
         if (!applyLight) {
+            // reset the background to white color
             setBackgroundColor(1F)
         }
     }
