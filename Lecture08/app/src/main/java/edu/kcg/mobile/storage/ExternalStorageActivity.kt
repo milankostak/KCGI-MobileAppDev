@@ -18,7 +18,7 @@ class ExternalStorageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_external)
 
         findViewById<Button>(R.id.save_to_file).setOnClickListener { saveTextToExternalFile() }
-        findViewById<FloatingActionButton>(R.id.float_button).setOnClickListener {
+        findViewById<FloatingActionButton>(R.id.load_from_file).setOnClickListener {
             loadTextFromExternalFile(it)
         }
     }

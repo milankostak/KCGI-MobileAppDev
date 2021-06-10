@@ -20,7 +20,7 @@ class InternalStorageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_internal)
 
         findViewById<Button>(R.id.save_to_file).setOnClickListener { saveTextToInternalFile() }
-        findViewById<FloatingActionButton>(R.id.float_button).setOnClickListener {
+        findViewById<FloatingActionButton>(R.id.load_from_file).setOnClickListener {
             loadTextFromInternalFile(it)
         }
     }

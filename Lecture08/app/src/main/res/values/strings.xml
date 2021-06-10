@@ -31,4 +31,5 @@
 
     <!-- Common -->
     <string name="save_to_file">Save to file</string>
+    <string name="load_from_file">Load from file</string>
 </resources>

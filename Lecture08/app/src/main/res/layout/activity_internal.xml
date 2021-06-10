@@ -29,15 +29,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_button"
+    <Button
+        android:id="@+id/load_from_file"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/load_from_file"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/save_to_file"
-        app:srcCompat="@android:drawable/toast_frame"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toBottomOf="@id/save_to_file" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
