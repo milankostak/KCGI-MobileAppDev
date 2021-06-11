@@ -37,24 +37,27 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val signatureKey = resources.getString(R.string.settings_key_signature)
-        val signatureValue = getDefaultSharedPreferences(this).getString(signatureKey, "") ?: ""
+        val signatureValue = getDefaultSharedPreferences(this)
+            .getString(signatureKey, "") ?: ""
         findViewById<TextView>(R.id.text_view).text = signatureValue
     }
 
     fun onSwitch1Change(view: View) {
-        storeBooleanValue(SWITCH1_ID, (view as SwitchMaterial).isChecked)
+        val isChecked = (view as SwitchMaterial).isChecked
+        saveBooleanValue(SWITCH1_ID, isChecked)
     }
 
     fun onSwitch2Change(view: View) {
-        storeBooleanValue(SWITCH2_ID, (view as SwitchMaterial).isChecked)
+        val isChecked = (view as SwitchMaterial).isChecked
+        saveBooleanValue(SWITCH2_ID, isChecked)
     }
 
     private fun getBooleanValue(id: String): Boolean {
         val sharedPreferences = getSharedPreferences()
-        return sharedPreferences.getBoolean(id, true)
+        return sharedPreferences.getBoolean(id, false)
     }
 
-    private fun storeBooleanValue(id: String, value: Boolean) {
+    private fun saveBooleanValue(id: String, value: Boolean) {
         val editor = getSharedPreferences().edit()
         editor.putBoolean(id, value)
         editor.apply()
