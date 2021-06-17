@@ -9,7 +9,7 @@ interface UserDao {
     fun getAll(): List<User>
 
     @Query("SELECT * FROM user WHERE id IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<User>
+    fun loadByIds(userIds: IntArray): List<User>
 
     @Query("SELECT * FROM user WHERE name LIKE :name")
     fun findByName(name: String): List<User>

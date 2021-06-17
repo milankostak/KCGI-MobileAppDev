@@ -28,7 +28,8 @@ class RoomActivity : AppCompatActivity(), CoroutineScope {
 
         val db = Room.databaseBuilder(
             applicationContext,
-            AppDatabase::class.java, "room_db2"
+            AppDatabase::class.java,
+            "room_db"
         ).build()
         userDao = db.userDao()
 
@@ -41,7 +42,7 @@ class RoomActivity : AppCompatActivity(), CoroutineScope {
     private suspend fun saveValues() {
         val name = findViewById<EditText>(R.id.input_name_room).text.toString()
         val age = findViewById<EditText>(R.id.input_age_room).text.let {
-            if (it.isNotEmpty()) it.toString().toInt() else 0
+            it?.toString()?.toIntOrNull() ?: 0
         }
         val id = withContext(Dispatchers.IO) {
             userDao.insert(User(name, age))
@@ -51,9 +52,17 @@ class RoomActivity : AppCompatActivity(), CoroutineScope {
             if (id >= 0) {
                 findViewById<EditText>(R.id.input_name_room).text.clear()
                 findViewById<EditText>(R.id.input_age_room).text.clear()
-                Toast.makeText(this@RoomActivity, "The new record has ID $id", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this@RoomActivity,
+                    "The new record has ID=$id",
+                    Toast.LENGTH_LONG
+                ).show()
             } else {
-                Toast.makeText(this@RoomActivity, "Error occurred while saving the data", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this@RoomActivity,
+                    "Error occurred while saving the data",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
@@ -61,7 +70,7 @@ class RoomActivity : AppCompatActivity(), CoroutineScope {
     private suspend fun updateByName() {
         val name = findViewById<EditText>(R.id.input_name_room).text.toString()
         val age = findViewById<EditText>(R.id.input_age_room).text.let {
-            if (it.isNotEmpty()) it.toString().toInt() else 0
+            it?.toString()?.toIntOrNull() ?: 0
         }
         val count = withContext(Dispatchers.IO) {
             val users = userDao.findByName(name)

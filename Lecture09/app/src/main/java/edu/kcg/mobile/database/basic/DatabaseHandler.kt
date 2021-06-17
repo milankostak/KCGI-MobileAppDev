@@ -7,11 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper
 class DatabaseHandler(context: Context, name: String, version: Int = 1) :
     SQLiteOpenHelper(context, name, null, version) {
 
-    override fun onCreate(sqld: SQLiteDatabase) {
-        sqld.execSQL("""
-            CREATE TABLE $TABLE_USERS (
+    override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL(
+            """
+            CREATE TABLE $TABLE_USERS(
                 id INTEGER PRIMARY KEY autoincrement,
-                $COLUMN_NAME varchar(45) NOT NULL ,
+                $COLUMN_NAME varchar(100) NOT NULL,
                 $COLUMN_AGE INTEGER NOT NULL
             );"""
         )
@@ -20,4 +21,5 @@ class DatabaseHandler(context: Context, name: String, version: Int = 1) :
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         // empty for now
     }
+
 }

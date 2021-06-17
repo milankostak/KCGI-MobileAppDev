@@ -18,12 +18,12 @@ class DatabaseManager(private val db: DatabaseHandler) {
             put(COLUMN_AGE, user.age)
         }
         return db.writableDatabase
-            .update(TABLE_USERS, contentValues, "$COLUMN_NAME LIKE ?", listOf(user.name).toTypedArray())
+            .update(TABLE_USERS, contentValues, "$COLUMN_NAME LIKE ?", arrayOf(user.name))
     }
 
     fun deleteByName(name: String): Int {
         return db.writableDatabase
-            .delete(TABLE_USERS, "$COLUMN_NAME LIKE ?", listOf(name).toTypedArray())
+            .delete(TABLE_USERS, "$COLUMN_NAME LIKE ?", arrayOf(name))
     }
 
     fun getAll(): MutableList<User> {
