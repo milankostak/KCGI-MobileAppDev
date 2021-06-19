@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.kcg.mobile.notifications">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppThemeOverride">
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".handlers.MessagingMainActivity"
+            android:label="@string/title_activity_messaging_main" />
+
+        <service
+            android:name=".handlers.MessagingIntentService"
+            android:exported="false" />
+
+        <activity
+            android:name=".SimpleNotificationActivity"
+            android:label="title_activity_simple_notification" />
+
+    </application>
+
+</manifest>
