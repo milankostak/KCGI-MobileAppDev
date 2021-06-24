@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- view for AdMob Interstitial Ad -->
     <TextView
         android:id="@+id/app_title"
         android:layout_width="wrap_content"

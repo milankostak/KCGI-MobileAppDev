@@ -5,6 +5,7 @@
 
     <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
     <string name="start_level">Level 1</string>
+    <string name="level_x">Level %d</string>
     <string name="next_level">Next Level</string>
     <!-- -
         This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.

@@ -14,7 +14,6 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 private const val TOAST_TEXT = "Test ads are being shown. " +
         "To show live ads, replace the ad unit ID in res/values/strings.xml " +
         "with your own ad unit ID."
-private const val START_LEVEL = 1
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         levelTextView = findViewById(R.id.level)
         // Create the text view to show the level number.
-        currentLevel = START_LEVEL
+        currentLevel = 1
 
         // Create the InterstitialAd and set the adUnitId (defined in values/strings.xml).
         loadInterstitial()
@@ -61,8 +60,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
+                // Code to be executed when an ad opens an overlay that covers the screen.
             }
 
             override fun onAdClicked() {
@@ -91,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     private fun showInterstitial() {
         // Show the ad if it's ready. Otherwise toast and reload the ad.
         if (interstitialAd != null) {
-            setFullscreenCallback()
+            setFullScreenCallback()
             interstitialAd?.show(this)
         } else {
             Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show()
@@ -99,7 +97,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setFullscreenCallback() {
+    private fun setFullScreenCallback() {
         interstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdDismissedFullScreenContent() {
                 goToNextLevel()
@@ -132,14 +130,13 @@ class MainActivity : AppCompatActivity() {
                     interstitialAd = null
                     nextLevelButton.isEnabled = true
                 }
-
             }
         )
     }
 
     private fun goToNextLevel() {
         // Show the next level and reload the ad to prepare for the level after.
-        levelTextView.text = "Level " + (++currentLevel)
+        levelTextView.text = getString(R.string.level_x, ++currentLevel)
         loadInterstitial()
     }
 }
