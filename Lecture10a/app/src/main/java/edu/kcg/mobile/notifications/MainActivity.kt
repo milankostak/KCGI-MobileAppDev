@@ -18,10 +18,7 @@ import edu.kcg.mobile.notifications.handlers.MessagingMainActivity
 import edu.kcg.mobile.notifications.mock.MockDatabase
 import edu.kcg.mobile.notifications.util.NotificationUtil
 
-/**
- * The Activity demonstrates several popular Notification. Style examples along with their best
- * practices
- */
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mNotificationManagerCompat: NotificationManagerCompat
@@ -49,12 +46,12 @@ class MainActivity : AppCompatActivity() {
         if (!areNotificationsEnabled) {
             // Because the user took an action to create a notification, we create a prompt to let
             // the user re-enable notifications for this application again.
-            val snackBar = Snackbar
-                    .make(view, "You need to enable notifications for this app", Snackbar.LENGTH_LONG)
-                    .setAction("ENABLE") { // Links to this app's notification settings
-                        openNotificationSettingsForApp()
-                    }
-            snackBar.show()
+            Snackbar
+                .make(view, "You need to enable notifications for this app", Snackbar.LENGTH_LONG)
+                .setAction("ENABLE") { // Links to this app's notification settings
+                    openNotificationSettingsForApp()
+                }
+                .show()
             return false
         }
         return true

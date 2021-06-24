@@ -10,7 +10,7 @@ class SimpleNotificationActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple_notification)
 
-        // Cancel Notification
+        // Cancel the notification by its ID
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.cancel(MainActivity.NOTIFICATION_ID)
     }
