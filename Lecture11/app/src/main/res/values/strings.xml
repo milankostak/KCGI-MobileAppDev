@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">REST, Web Services</string>
+    <string name="send_requests">Send requests</string>
+    <string name="go_to_movies_activity">Go to movies activity</string>
+    <string name="error">error</string>
+    <string name="search_movies">Search movies</string>
+    <string name="total_results">Total results: %s</string>
+    <string name="placeholder">placeholder</string>
+</resources>
