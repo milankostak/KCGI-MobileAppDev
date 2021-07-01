@@ -1,11 +1,11 @@
 package edu.kcg.mobile.restwebservices.model
 
 data class QuoteContainer(
-    var type: String,
-    var value: Quote,
+    val type: String?,
+    val value: Quote?
 )
 
 data class Quote(
-    var id: Long,
-    var quote: String
+    val id: Int?,
+    val quote: String?
 )

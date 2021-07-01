@@ -17,10 +17,10 @@ import org.json.JSONObject
 
 class MoviesActivity : AppCompatActivity() {
 
-    private lateinit var viewAdapter: MovieViewAdapter
+    private lateinit var movieViewAdapter: MovieViewAdapter
     private lateinit var etMovieName: TextView
     private lateinit var tvTotalResults: TextView
-    private lateinit var textView1: TextView
+    private lateinit var tvResults: TextView
 
     private val gson = Gson()
 
@@ -31,18 +31,17 @@ class MoviesActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_search_movies).setOnClickListener { send(it as Button) }
         etMovieName = findViewById(R.id.et_movie_name)
         tvTotalResults = findViewById(R.id.tv_total_results)
-        textView1 = findViewById(R.id.text_view1)
+        tvResults = findViewById(R.id.tv_results)
 
         tvTotalResults.text = getString(R.string.total_results, "-")
 
         val viewManager = LinearLayoutManager(this)
-        viewAdapter = MovieViewAdapter(this, emptyList())
+        movieViewAdapter = MovieViewAdapter(this, emptyList())
 
-        findViewById<RecyclerView>(R.id.locations_list).apply {
+        findViewById<RecyclerView>(R.id.movies_list).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
-            adapter = viewAdapter
-            setOnClickListener {  }
+            adapter = movieViewAdapter
         }
     }
 
@@ -59,18 +58,18 @@ class MoviesActivity : AppCompatActivity() {
             url2,
             null,
             { response -> processResponse(response) },
-            { error -> textView1.text = getString(R.string.error); println(error) }
+            { error -> tvResults.text = getString(R.string.error); println(error) }
         )
         queue.add(moviesJsonObjectRequest)
     }
 
     private fun processResponse(response: JSONObject?) {
-        val result = gson.fromJson(response.toString(), MovieSearchResult::class.java)
-        tvTotalResults.text = getString(R.string.total_results, result.totalResults ?: "0")
-        textView1.text = if (result.Search?.isEmpty() == true) "No results" else ""
+        val searchResult = gson.fromJson(response.toString(), MovieSearchResult::class.java)
+        tvTotalResults.text = getString(R.string.total_results, searchResult.totalResults ?: "0")
+        tvResults.text = if (searchResult.Search?.isEmpty() == true) getString(R.string.no_results) else ""
 
-        viewAdapter.data = result.Search ?: emptyList<Movie>()
-        viewAdapter.notifyDataSetChanged()
+        movieViewAdapter.data = searchResult.Search ?: emptyList()
+        movieViewAdapter.notifyDataSetChanged()
     }
 
 }

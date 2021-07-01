@@ -36,12 +36,18 @@ class MainActivity : AppCompatActivity() {
     private fun send() {
         val queue = Volley.newRequestQueue(this)
 
-        val url1 = "https://www.google.com"
+        val url1 = listOf(
+            "https://en.wikipedia.org/wiki/JSON",
+            "https://en.wikipedia.org/wiki/List_of_members_of_the_European_Parliament_for_Denmark,_2014%E2%80%932019",
+            "https://en.wikipedia.org/wiki/P%C5%82o%C5%84sk_County",
+            "https://en.wikipedia.org/wiki/%C5%BD%C4%8F%C3%A1r_nad_S%C3%A1zavou",
+            "https://zh.wikipedia.org/wiki/%E8%96%A9%E6%89%8E%E7%93%A6%E6%B2%B3%E7%95%94%E6%97%A5%E8%B3%88%E7%88%BE",
+            "https://ar.wikipedia.org/wiki/%D8%AC%D8%AF%D9%8A%D8%A7%D8%B1_%D9%86%D8%A7%D8%AF_%D8%B3%D8%A7%D8%B2%D8%A7%D9%81%D9%88"
+        ).random()
         val stringRequest = StringRequest(
             Request.Method.GET,
             url1,
-            // Display the first 20 characters of the response string.
-            { response -> textView1.text = "Response is: ${response.substring(0, 20)}" },
+            { response -> processResponse1(response) },
             { error -> textView1.text = getString(R.string.error); println(error) }
         )
         queue.add(stringRequest)
@@ -51,15 +57,26 @@ class MainActivity : AppCompatActivity() {
             Request.Method.GET,
             url2,
             null,
-            { response -> processResponse(response) },
+            { response -> processResponse2(response) },
             { error -> textView2.text = getString(R.string.error); println(error) }
         )
+//            .let { queue.add(it) }
         queue.add(quoteJsonObjectRequest)
     }
 
-    private fun processResponse(response: JSONObject?) {
-        val result = gson.fromJson(response.toString(), QuoteContainer::class.java)
-        textView2.text = result.value.quote
+    private fun processResponse1(response: String) {
+//        textView1.text = "Response is: ${response.substring(0, 40)}"
+
+        // get the H1 heading from the HTML
+        textView1.text =
+            Regex("<h1 id=\"section_0\">(.+?)</h1>").find(response)?.groupValues?.get(1)
+                ?: "missing h1"
+    }
+
+
+    private fun processResponse2(response: JSONObject?) {
+        val quoteContainer = gson.fromJson(response.toString(), QuoteContainer::class.java)
+        textView2.text = quoteContainer?.value?.quote ?: "quote container error"
     }
 
 }

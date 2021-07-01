@@ -15,7 +15,6 @@ import edu.kcg.mobile.restwebservices.model.Movie
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.net.URL
 
 
@@ -28,8 +27,8 @@ class MovieViewAdapter(
      * Provide a reference to the type of views that you are using (custom ViewHolder).
      */
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
-        val tvTitle: TextView = view.findViewById(R.id.tvTitle)
-        val tvYear: TextView = view.findViewById(R.id.tvYear)
+        val tvTitle: TextView = view.findViewById(R.id.tv_title)
+        val tvYear: TextView = view.findViewById(R.id.tv_year)
         val imagePoster: ImageView = view.findViewById(R.id.image_poster)
 
         init {
@@ -48,7 +47,7 @@ class MovieViewAdapter(
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater
             .from(viewGroup.context)
-            .inflate(R.layout.text_row_item, viewGroup, false)
+            .inflate(R.layout.movie_item, viewGroup, false)
 
         return ViewHolder(view)
     }
