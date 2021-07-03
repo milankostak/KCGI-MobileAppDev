@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ProgressBar
+        android:id="@+id/loading_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_request_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/request_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/placeholder"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bt_request_position" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_time">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Latitude -->
+            <TextView
+                android:id="@+id/lb_latitude"
+                style="@style/LabelTextView"
+                android:text="@string/latitude"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_latitude"
+                style="@style/ContentTextView"
+                android:text="@string/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Longitude -->
+            <TextView
+                android:id="@+id/lb_longitude"
+                style="@style/LabelTextView"
+                android:text="@string/longitude"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lb_latitude" />
+
+            <TextView
+                android:id="@+id/tv_longitude"
+                style="@style/ContentTextView"
+                android:text="@string/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_latitude" />
+
+            <!-- Accuracy -->
+            <TextView
+                android:id="@+id/lb_accuracy"
+                style="@style/LabelTextView"
+                android:text="@string/accuracy"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lb_longitude" />
+
+            <TextView
+                android:id="@+id/tv_accuracy"
+                style="@style/ContentTextView"
+                android:text="@string/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_longitude" />
+
+            <!-- Altitude -->
+            <TextView
+                android:id="@+id/lb_altitude"
+                style="@style/LabelTextView"
+                android:layout_marginTop="24dp"
+                android:text="@string/altitude"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lb_accuracy" />
+
+            <TextView
+                android:id="@+id/tv_altitude"
+                style="@style/ContentTextView"
+                android:layout_marginTop="24dp"
+                android:text="@string/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_accuracy" />
+
+            <!-- Vertical Accuracy -->
+            <TextView
+                android:id="@+id/lb_vertical_accuracy"
+                style="@style/LabelTextView"
+                android:text="@string/vertical_accuracy"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lb_altitude" />
+
+            <TextView
+                android:id="@+id/tv_vertical_accuracy"
+                style="@style/ContentTextView"
+                android:text="@string/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_altitude" />
+
+            <!-- Speed -->
+            <TextView
+                android:id="@+id/lb_speed"
+                style="@style/LabelTextView"
+                android:layout_marginTop="24dp"
+                android:text="@string/speed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lb_vertical_accuracy" />
+
+            <TextView
+                android:id="@+id/tv_speed"
+                style="@style/ContentTextView"
+                android:layout_marginTop="24dp"
+                android:text="@string/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_vertical_accuracy" />
+
+            <!-- Speed accuracy -->
+            <TextView
+                android:id="@+id/lb_speed_accuracy"
+                style="@style/LabelTextView"
+                android:text="@string/speed_accuracy"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lb_speed" />
+
+            <TextView
+                android:id="@+id/tv_speed_accuracy"
+                style="@style/ContentTextView"
+                android:text="@string/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_speed" />
+
+            <!-- Bearing -->
+            <TextView
+                android:id="@+id/lb_bearing"
+                style="@style/LabelTextView"
+                android:layout_marginTop="24dp"
+                android:text="@string/bearing"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lb_speed_accuracy" />
+
+            <TextView
+                android:id="@+id/tv_bearing"
+                style="@style/ContentTextView"
+                android:layout_marginTop="24dp"
+                android:text="@string/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_speed_accuracy" />
+
+            <!-- Bearing accuracy -->
+            <TextView
+                android:id="@+id/lb_bearing_accuracy"
+                style="@style/LabelTextView"
+                android:text="@string/bearing_accuracy"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lb_bearing" />
+
+            <TextView
+                android:id="@+id/tv_bearing_accuracy"
+                style="@style/ContentTextView"
+                android:text="@string/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_bearing" />
+
+            <!-- Provider -->
+            <TextView
+                android:id="@+id/lb_provider"
+                style="@style/LabelTextView"
+                android:layout_marginTop="24dp"
+                android:text="@string/provider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lb_bearing_accuracy" />
+
+            <TextView
+                android:id="@+id/tv_provider"
+                style="@style/ContentTextView"
+                android:layout_marginTop="24dp"
+                android:text="@string/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_bearing_accuracy" />
+
+            <!-- Satellites -->
+            <TextView
+                android:id="@+id/lb_satellites"
+                style="@style/LabelTextView"
+                android:text="@string/satellites"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lb_provider" />
+
+            <TextView
+                android:id="@+id/tv_satellites"
+                style="@style/ContentTextView"
+                android:text="@string/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_provider" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
