@@ -33,3 +33,12 @@
 
 ## Lecture 10b
 [Ads](https://github.com/milankostak/KCGI-MobileAppDev/tree/master/Lecture10b)
+
+## Lecture 11
+[REST, Web services](https://github.com/milankostak/KCGI-MobileAppDev/tree/master/Lecture11)
+
+## Lecture 12a
+[Maps](https://github.com/milankostak/KCGI-MobileAppDev/tree/master/Lecture12a)
+
+## Lecture 12b
+[GPS](https://github.com/milankostak/KCGI-MobileAppDev/tree/master/Lecture12b)
