@@ -1,5 +1,4 @@
-class Dog(private var age: Int,
-          val name: String) {
+class Dog(private var age: Int, val name: String) {
 
     fun incrementAge() {
         age++
