@@ -17,7 +17,8 @@
         app:layout_constraintBottom_toBottomOf="@id/button_search_movies"
         app:layout_constraintEnd_toStartOf="@id/button_search_movies"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/button_search_movies" />
+        app:layout_constraintTop_toTopOf="@id/button_search_movies"
+        tools:ignore="LabelFor" />
 
     <Button
         android:id="@+id/button_search_movies"
