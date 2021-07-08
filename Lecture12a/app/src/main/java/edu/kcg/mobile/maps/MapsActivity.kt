@@ -12,11 +12,12 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import java.io.IOException
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+    private lateinit var etAddress: EditText
+    private lateinit var geocoder: Geocoder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +30,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         findViewById<Button>(R.id.button).setOnClickListener {
             searchAddress()
         }
+        etAddress = findViewById(R.id.et_address)
+        geocoder = Geocoder(this)
     }
 
     /**
@@ -47,27 +50,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-//        mMap.isMyLocationEnabled = true
 
-        mMap.setOnMapLongClickListener { latLong ->
-            val marker = LatLng(latLong.latitude, latLong.longitude)
-            mMap.addMarker(MarkerOptions().position(marker))
+        mMap.setOnMapLongClickListener {
+            val addressesList = geocoder.getFromLocation(it.latitude, it.longitude, 1)
+            val locationName = addressesList.firstOrNull()?.getAddressLine(0) ?: "Unknown location"
+            mMap.addMarker(MarkerOptions().position(it).title(locationName))
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(it))
         }
     }
 
     private fun searchAddress() {
-        val etAddress = findViewById<EditText>(R.id.et_address)
         val location = etAddress.text.toString()
         if (location.isNotBlank()) {
-            try {
-                val geocoder = Geocoder(this)
-                val addressesList = geocoder.getFromLocationName(location, 1)
-                addressesList.firstOrNull()?.let {
-                    val latLng = LatLng(it.latitude, it.longitude)
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
-                }
-            } catch (e: IOException) {
-                e.printStackTrace()
+            val addressesList = geocoder.getFromLocationName(location, 1)
+            addressesList.firstOrNull()?.let {
+                val latLng = LatLng(it.latitude, it.longitude)
+//                println(it.countryName)
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
             }
         }
     }
