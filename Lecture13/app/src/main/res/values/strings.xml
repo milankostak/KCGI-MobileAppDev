@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Multimedia</string>
+    <string name="start_recording">Start recording</string>
+    <string name="stop_recording">Stop recording</string>
+    <string name="play_recording">Play recording</string>
+    <string name="stop_playing">Stop playing</string>
+    <string name="go_to_videos">Go to videos</string>
+    <string name="go_to_recordings">Go to recordings</string>
+    <string name="go_to_youtube_videos">Go to Youtube videos</string>
+    <string name="set_video">Set video</string>
+</resources>
