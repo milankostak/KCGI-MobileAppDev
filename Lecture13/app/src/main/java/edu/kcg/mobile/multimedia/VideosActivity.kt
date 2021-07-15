@@ -1,15 +1,12 @@
 package edu.kcg.mobile.multimedia
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Button
 import android.widget.VideoView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import java.io.FileNotFoundException
 
 class VideosActivity : AppCompatActivity() {
 
@@ -28,12 +25,12 @@ class VideosActivity : AppCompatActivity() {
 //        videoView.start()
 
         // 2. loading local video
-        val loadAlbumImageLauncher = getLoadAlbumImageLauncher()
+        val loadAlbumVideoLauncher = getLoadAlbumVideoLauncher()
         val albumIntent = Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
-        loadAlbumImageLauncher.launch(albumIntent)
+        loadAlbumVideoLauncher.launch(albumIntent)
     }
 
-    private fun getLoadAlbumImageLauncher(): ActivityResultLauncher<Intent> {
+    private fun getLoadAlbumVideoLauncher(): ActivityResultLauncher<Intent> {
         return registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             it?.data?.data?.let { uri ->
                 videoView.setVideoURI(uri)
