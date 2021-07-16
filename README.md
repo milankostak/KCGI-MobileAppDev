@@ -42,3 +42,9 @@
 
 ## Lecture 12b
 [GPS](https://github.com/milankostak/KCGI-MobileAppDev/tree/master/Lecture12b)
+
+## Lecture 13
+[Multimedia](https://github.com/milankostak/KCGI-MobileAppDev/tree/master/Lecture13)
+
+## Lecture 14
+[Canvas](https://github.com/milankostak/KCGI-MobileAppDev/tree/master/Lecture14)
