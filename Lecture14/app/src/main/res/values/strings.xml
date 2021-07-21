@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Canvas</string>
+    <string name="go_to_canvas_screen">Go to canvas screen</string>
+    <string name="go_to_opengl_screen">Go to OpenGL screen</string>
+</resources>
