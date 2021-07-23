@@ -8,45 +8,41 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 
-
-class TestCanvas(
-    context: Context,
-    attrs: AttributeSet? = null,
-) : View(context, attrs) {
+class TestCanvas(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 
     data class Point(val x: Float, val y: Float)
     data class Line(val p1: Point, val p2: Point)
 
-    private val lines: MutableList<Line> = mutableListOf()
+    private val lines = mutableListOf<Line>()
     private var currentLine: Line? = null
 
-    private val whitePaint: Paint = Paint().apply {
+    private val whiteFillPaint = Paint().apply {
         color = Color.WHITE
         style = Paint.Style.FILL
     }
 
-    private val bluePaint: Paint = Paint().apply {
-        color = Color.BLUE
+    private val blueFillPaint = Paint().apply {
+        color = Color.valueOf(0.3f, 0.3f, 1f).toArgb()
         style = Paint.Style.FILL
     }
 
-    private val blackPaint: Paint = Paint().apply {
-        color = Color.BLACK
+    private val cyanFillPaint = Paint().apply {
+        color = Color.CYAN // valueOf(0f, 1f, 1f).toArgb()
         style = Paint.Style.FILL
     }
 
-    private val textPaint: Paint = Paint(Paint.LINEAR_TEXT_FLAG or Paint.ANTI_ALIAS_FLAG).apply {
+    private val textPaint = Paint(Paint.LINEAR_TEXT_FLAG or Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
         textSize = pxFromDp(24f)
     }
 
-    private val linePaintGreen = Paint().apply {
+    private val greenLinePaint = Paint().apply {
         isAntiAlias = true
         color = Color.GREEN
         style = Paint.Style.STROKE
     }
 
-    private val linePaintRed = Paint().apply {
+    private val redLinePaint = Paint().apply {
         isAntiAlias = true
         color = Color.RED
         strokeWidth = 3f
@@ -59,33 +55,24 @@ class TestCanvas(
         return dp * context.resources.displayMetrics.density
     }
 
-    private fun addLine(p1: Point, p2: Point) {
-        lines.add(Line(p1, p2))
-    }
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawPaint(bluePaint)
+        canvas.drawPaint(blueFillPaint)
 
-        canvas.drawRect(
-            left + (right - left) / 3f,
-            0f,
-            right - (right - left) / 3f,
-            top + (bottom - top) / 3f,
-            whitePaint
-        )
+        canvas.drawRect(width / 3f, 0f, width * 0.667f, height / 2f, whiteFillPaint)
 
-        canvas.drawCircle(width / 2f, height / 2f, arcLeft, blackPaint)
+        canvas.drawCircle(width / 2f, height / 3f, arcLeft, cyanFillPaint)
 
         canvas.drawText("KCGI Mobile", 0f, height.toFloat(), textPaint)
 
-        canvas.drawLine(0f, 0f, 500f, 200f, linePaintGreen)
+        canvas.drawLine(0f, 0f, 500f, 200f, greenLinePaint)
 
         lines.forEach {
-            canvas.drawLine(it.p1.x, it.p1.y, it.p2.x, it.p2.y, linePaintGreen)
+            canvas.drawLine(it.p1.x, it.p1.y, it.p2.x, it.p2.y, greenLinePaint)
         }
+
         currentLine?.let {
-            canvas.drawLine(it.p1.x, it.p1.y, it.p2.x, it.p2.y, linePaintRed)
+            canvas.drawLine(it.p1.x, it.p1.y, it.p2.x, it.p2.y, redLinePaint)
         }
     }
 
@@ -107,13 +94,13 @@ class TestCanvas(
             }
             MotionEvent.ACTION_UP -> {
                 currentLine?.let {
-                    addLine(it.p1, it.p2)
+                    lines.add(Line(it.p1, it.p2))
                 }
                 currentLine = null
                 performClick()
             }
         }
-        invalidate()
+        invalidate() // request redraw
         return true
     }
 
