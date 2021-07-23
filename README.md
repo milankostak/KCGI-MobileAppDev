@@ -47,4 +47,4 @@
 [Multimedia](https://github.com/milankostak/KCGI-MobileAppDev/tree/master/Lecture13)
 
 ## Lecture 14
-[Canvas](https://github.com/milankostak/KCGI-MobileAppDev/tree/master/Lecture14)
+[Canvas, OpenGL](https://github.com/milankostak/KCGI-MobileAppDev/tree/master/Lecture14)
