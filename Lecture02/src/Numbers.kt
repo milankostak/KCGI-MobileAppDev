@@ -1,9 +1,14 @@
 fun main() {
     // numbers
-    val h: Byte = 127 // Byte.MAX_VALUE
-    val i: Short = 32_767 // Short.MAX_VALUE
-    val j: Int = 2_147_483_647 // Int.MAX_VALUE
-    val k: Long = 9_223_372_036_854_775_807 // Long.MAX_VALUE
+    val h: Byte = 127 // Byte.MAX_VALUE (2^(2^3)-1)
+    val i: Short = 32_767 // Short.MAX_VALUE (2^(2^4)-1)
+    val j: Int = 2_147_483_647 // Int.MAX_VALUE (2^(2^5)-1)
+    val k: Long = 9_223_372_036_854_775_807 // Long.MAX_VALUE (2^(2^6)-1)
+
+    println(h)
+    println(i)
+    println(j)
+    println(k)
 
     val m: Float = 5F
 //    val n = 5.toFloat() // won't work, 5 is integer
