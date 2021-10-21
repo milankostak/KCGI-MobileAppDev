@@ -7,7 +7,7 @@ class KotlinCallsJava {
 
     fun callingJava() {
         val javaCallsKotlin = JavaCallsKotlin()
-        javaCallsKotlin.printString("Hello from Kotlin code!");
+        javaCallsKotlin.printString("Hello from Kotlin code!")
     }
 
 }

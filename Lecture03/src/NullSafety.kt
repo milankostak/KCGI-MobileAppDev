@@ -10,7 +10,7 @@ fun main() {
     println(a.length) // ok to do that
 //    println(b.length) // NOT ok to do that, compilation error
     // necessary to check
-    println(b?.length) // if b is null then it does not ask calls its length
+    println(b?.length) // if b is null then it does not ask for its length
     println(b!!.length) // DANGEROUS operation, if b is null then exception is thrown
 }
 

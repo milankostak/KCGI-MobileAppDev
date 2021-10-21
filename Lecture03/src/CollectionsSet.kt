@@ -5,11 +5,14 @@ fun main() {
     // https://kotlinlang.org/docs/collections-overview.html#set
 
     println(numbers1) // [1, 12, 15, 17, 25]
-    // LinkedHashSet is the default implementation and it preserves order
+    // LinkedHashSet is the default implementation, and it preserves order
+    println()
 
     val numbers2 = mutableSetOf(1, 12, 15, 17, 25)
     numbers2.add(5) // added to the last position
+    numbers2.add(15) // does not add it (it would be a duplicate)
     println(numbers2) // [1, 12, 15, 17, 25, 5]
+    println()
 
     // HashSet does not preserve order
     val numbers3 = hashSetOf(1, 12, 15, 17, 25)

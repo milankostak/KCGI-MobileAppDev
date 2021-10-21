@@ -4,7 +4,7 @@ fun main() {
     println("Third element: ${numbers1.get(2)}")
     println("Fourth element: ${numbers1[3]}")
     println("Index of element \"two\" is ${numbers1.indexOf("two")}")
-//    numbers1.add() // cannot add elements, the list is immutable
+//    numbers1.add("five") // cannot add elements, the list is immutable
 //    numbers1[0] = "zero" // cannot change any element
     println()
 
