@@ -12,7 +12,8 @@ fun main() {
     println(longestString)
 
     val number = 17
-//    val number = null
+//    val number: Int? = null
     println(number.addFive())
     println(number)
+    println(number.addFive().addFive().addFive())
 }

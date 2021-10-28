@@ -17,7 +17,7 @@ fun main() {
     println("minOrNull")
     println(numbers2.minOrNull() ?: NaN) // minOrNull can return null -> let's use elvis operator
     println("maxOrNull")
-    println(numbers2.maxOrNull() ?: NaN)
+    println(numbers2.filter { it < 0 }.maxOrNull() ?: NaN)
     println("average")
     println(numbers2.average())
 

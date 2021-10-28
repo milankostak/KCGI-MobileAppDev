@@ -21,23 +21,25 @@ fun main() {
     println("new cars")
     println(newCars)
 
-    // get all white cars made after 2015 sorted by brand
-    val white2016Cars = cars
+    // get all red cars made after 2015 sorted by brand
+    val red2016Cars = cars
             .filter { it.color == "red" && it.year > 2015 }
             .sortedBy { it.brand }
     println("red cars made after 2015")
-    println(white2016Cars)
+    println(red2016Cars)
 
     // get the oldest white car
     val oldestWhiteCar = cars
             .sortedByDescending { it.year }
             .lastOrNull { it.color == "white" }
+//            .sortedBy { it.year }
+//            .firstOrNull { it.color == "white" }
     println("oldest white car")
     println(oldestWhiteCar)
 
     // get all brands sorted without duplicates
     val brandsWithoutDuplicates = cars
-            .map { it.color.toLowerCase() }
+            .map { it.brand.lowercase() }
             .distinct()
             .sorted()
     println(brandsWithoutDuplicates)

@@ -1,6 +1,6 @@
 fun main() {
     val numbers1 = listOf("one", "two", "three", "four")
-    numbers1.filter { it.length > 3 }  // nothing happens with `numbers`, result is lost
+    numbers1.filter { it.length > 3 }  // nothing happens with `numbers1`, result is lost
     println("numbers are still $numbers1")
 
 //    val longerThan3 = numbers1.filter { s -> s.length > 3 }

@@ -5,7 +5,7 @@ fun main() {
     println(resultList)
 
     val numbers2 = mutableListOf("one", "two", "three", "four", "five")
-    numbers2.map { it.length }.filter { it > 3 }.let {
+    val result1 = numbers2.map { it.length }.filter { it > 3 }.let {
         println("printing inside let (1)")
         println(it)
         // and more function calls if needed
@@ -14,7 +14,7 @@ fun main() {
     // https://kotlinlang.org/docs/scope-functions.html#let
 
 
-    val result = numbers2
+    val result2 = numbers2
             .map { it.length }
             .filter { it > 3 }
             .let {

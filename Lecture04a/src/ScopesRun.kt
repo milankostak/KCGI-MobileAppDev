@@ -10,7 +10,7 @@ fun main() {
 
     val string2 = string?.apply {
         println("getting the length of '$this' with apply")
-        length // does not makes sense here
+        length // does not make sense here
     } ?: ""
     println(string2)
 }
