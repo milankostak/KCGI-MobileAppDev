@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.switchmaterial.SwitchMaterial
 
-
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private lateinit var sensorManager: SensorManager
@@ -54,7 +53,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 //            vibrator.vibrate(VibrationEffect.createOneShot(1000, 10))
 //            vibrator.vibrate(VibrationEffect.createOneShot(1000, 255))
-            val pattern = longArrayOf(500, 1000, 1000, 2000) // start after 0.5s, vibrate for 1s, pause for 1s, vibrate for 2s, ...
+            val pattern = longArrayOf(500, 1000, 1000, 2000)
+            // start after 0.5s, vibrate for 1s, pause for 1s, vibrate for 2s, ...
             vibrator.vibrate(VibrationEffect.createWaveform(pattern, -1))
         }
     }
