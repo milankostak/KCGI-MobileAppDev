@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import java.io.FileNotFoundException
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var imageFromCameraLauncher: ActivityResultLauncher<Intent>
@@ -82,8 +81,10 @@ class MainActivity : AppCompatActivity() {
         if (ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), cameraPermissionCode)
             return false
+            // cannot continue now, we need to wait for user to confirm (or deny) the permission request
         }
         return true
+        // we can continue when the access was already granted in the past
     }
 
 }
