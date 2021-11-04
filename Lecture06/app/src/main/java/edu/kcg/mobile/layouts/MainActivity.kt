@@ -2,25 +2,29 @@ package edu.kcg.mobile.layouts
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import edu.kcg.mobile.layouts.ui.main.SectionsPagerAdapter
+import edu.kcg.mobile.layouts.ui.main.TAB_TITLES
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // links the layout file the the Activity class
+        // links the layout file the the MainActivity class
         setContentView(R.layout.activity_main)
 
         // the way of putting the fragments into the activity layout
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
+        val sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, lifecycle)
+        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
 
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
+        val tabLayout: TabLayout = findViewById(R.id.tabs)
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = getString(TAB_TITLES[position])
+        }.attach()
     }
 
 }

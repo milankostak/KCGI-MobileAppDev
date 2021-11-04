@@ -4,13 +4,14 @@ import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import edu.kcg.mobile.layouts.R
 import edu.kcg.mobile.layouts.ui.main.fragments.ConstraintFragment
 import edu.kcg.mobile.layouts.ui.main.fragments.LinearFragment
 import edu.kcg.mobile.layouts.ui.main.fragments.RelativeFragment
 
-private val TAB_TITLES = arrayOf(
+val TAB_TITLES = arrayOf(
     R.string.tab_linear,
     R.string.tab_relative,
     R.string.tab_constraint
@@ -19,14 +20,15 @@ private val TAB_TITLES = arrayOf(
 const val ARG_SECTION_NUMBER = "section_number"
 
 /**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
+ * A [FragmentStateAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
+ * Migration: https://developer.android.com/training/animation/vp2-migration
  */
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
-    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class SectionsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) :
+    FragmentStateAdapter(fm, lifecycle) {
 
-    override fun getItem(position: Int): Fragment {
-        // getItem is called to instantiate the fragment for the given page.
+    override fun createFragment(position: Int): Fragment {
+        // createFragment is called to instantiate the fragment for the given page.
         return when (position) {
             0 -> LinearFragment()
             1 -> RelativeFragment()
@@ -38,11 +40,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
         }
     }
 
-    override fun getPageTitle(position: Int): CharSequence {
-        return context.resources.getString(TAB_TITLES[position])
-    }
-
-    override fun getCount(): Int {
+    override fun getItemCount(): Int {
         // Returns number of tabs
         return TAB_TITLES.size
     }
