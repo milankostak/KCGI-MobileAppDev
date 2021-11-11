@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    tools:context=".ui.main.fragments.LinearFragment">
+    tools:context=".ui.main.fragments.RelativeFragment">
 
     <EditText
         android:id="@+id/to_relative"
