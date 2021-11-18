@@ -147,7 +147,12 @@ class MessagingIntentService : IntentService("MessagingIntentService") {
         // Adds the Intent to the top of the stack
         stackBuilder.addNextIntent(notifyIntent)
         // Gets a PendingIntent containing the entire back stack
-        val mainPendingIntent = PendingIntent.getActivity(this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val mainPendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            notifyIntent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
 
         // 4. Set up RemoteInput, so users can input (keyboard and voice) from notification.
 
@@ -164,7 +169,12 @@ class MessagingIntentService : IntentService("MessagingIntentService") {
                 .build()
         val intent = Intent(this, MessagingIntentService::class.java)
         intent.action = ACTION_REPLY
-        val replyActionPendingIntent = PendingIntent.getService(this, 0, intent, 0)
+        val replyActionPendingIntent = PendingIntent.getService(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
         val replyAction = NotificationCompat.Action.Builder(
                 R.drawable.ic_reply_white_18dp,
                 replyLabel,
@@ -212,7 +222,7 @@ class MessagingIntentService : IntentService("MessagingIntentService") {
         // If the phone is in "Do not disturb" mode, the user may still be notified if the
         // sender(s) are in a group allowed through "Do not disturb" by the user.
         for (name in messagingStyleCommsAppData.participants) {
-            notificationCompatBuilder.addPerson(name.uri)
+            notificationCompatBuilder.addPerson(name)
         }
         return notificationCompatBuilder
     }

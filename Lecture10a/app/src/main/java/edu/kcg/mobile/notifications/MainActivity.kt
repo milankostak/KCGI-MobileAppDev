@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 this,
                 0,
                 notifyIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
         val notification = NotificationCompat
@@ -163,7 +163,7 @@ class MainActivity : AppCompatActivity() {
                 this,
                 0,
                 notifyIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
         // 4. Set up RemoteInput, so users can input (keyboard and voice) from notification.
@@ -185,7 +185,12 @@ class MainActivity : AppCompatActivity() {
         //      API 24+ (N and above): this should be a Service or BroadcastReceiver.
         val intent = Intent(this, MessagingIntentService::class.java)
         intent.action = MessagingIntentService.ACTION_REPLY
-        val replyActionPendingIntent = PendingIntent.getService(this, 0, intent, 0)
+        val replyActionPendingIntent = PendingIntent.getService(
+            this,
+            0,
+            intent,
+            0
+        )
         val replyAction = NotificationCompat.Action.Builder(
                 R.drawable.ic_reply_white_18dp,
                 replyLabel,
@@ -234,7 +239,7 @@ class MainActivity : AppCompatActivity() {
         // If the phone is in "Do not disturb" mode, the user may still be notified if the
         // sender(s) are in a group allowed through "Do not disturb" by the user.
         for (name in messagingStyleCommsAppData.participants) {
-            notificationCompatBuilder.addPerson(name.uri)
+            notificationCompatBuilder.addPerson(name)
         }
         val notification = notificationCompatBuilder.build()
         mNotificationManagerCompat.notify(NOTIFICATION_ID, notification)
