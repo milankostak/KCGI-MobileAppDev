@@ -3,7 +3,7 @@ package edu.kcg.mobile.restwebservices.model
 data class MovieSearchResult(
     val Search: List<Movie>?,
     val totalResults: String?,
-    val Response: String
+    val Response: String,
 )
 
 data class Movie(

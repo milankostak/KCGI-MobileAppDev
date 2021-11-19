@@ -1,5 +1,6 @@
 package edu.kcg.mobile.restwebservices
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -10,7 +11,6 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
-import edu.kcg.mobile.restwebservices.model.Movie
 import edu.kcg.mobile.restwebservices.model.MovieSearchResult
 import edu.kcg.mobile.restwebservices.view.MovieViewAdapter
 import org.json.JSONObject
@@ -28,7 +28,7 @@ class MoviesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movies)
 
-        findViewById<Button>(R.id.button_search_movies).setOnClickListener { send(it as Button) }
+        findViewById<Button>(R.id.button_search_movies).setOnClickListener { send() }
         etMovieName = findViewById(R.id.et_movie_name)
         tvTotalResults = findViewById(R.id.tv_total_results)
         tvResults = findViewById(R.id.tv_results)
@@ -45,7 +45,7 @@ class MoviesActivity : AppCompatActivity() {
         }
     }
 
-    private fun send(button: Button) {
+    private fun send() {
         val queue = Volley.newRequestQueue(this)
 
         val movieName = etMovieName.text.toString().let {
@@ -63,6 +63,7 @@ class MoviesActivity : AppCompatActivity() {
         queue.add(moviesJsonObjectRequest)
     }
 
+    @SuppressLint("NotifyDataSetChanged") // all items always change
     private fun processResponse(response: JSONObject?) {
         val searchResult = gson.fromJson(response.toString(), MovieSearchResult::class.java)
         tvTotalResults.text = getString(R.string.total_results, searchResult.totalResults ?: "0")
