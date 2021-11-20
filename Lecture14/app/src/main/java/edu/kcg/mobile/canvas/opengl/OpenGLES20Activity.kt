@@ -15,4 +15,5 @@ class OpenGLES20Activity : Activity() {
         glView = MyGLSurfaceView(this)
         setContentView(glView)
     }
+
 }
