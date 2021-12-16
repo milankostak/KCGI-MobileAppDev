@@ -131,7 +131,7 @@ object MockDatabase {
             // Notification channel values (for devices targeting 26 and above):
             channelId = "channel_messaging_1"
             // The user-visible name of the channel.
-            channelName = "Sample Messaging"
+            channelName = "Complex Messaging"
             // The user-visible description of the channel.
             channelDescription = "Sample Messaging Notifications"
             channelImportance = NotificationManager.IMPORTANCE_MAX

@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickComplex(view: View) {
         if (areNotificationsEnabled(view)) {
-            generateMessagingStyleNotification()
+            generateComplexNotification()
         }
     }
 
@@ -58,9 +58,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun generateSimpleNotification() {
-        val channelId = "test_channel_id"
-        val channelName = "test channel name"
-        val channelDescription = "test channel description"
+        val channelId = "simple_messaging_channel_id"
+        val channelName = "Simple Messaging"
+        val channelDescription = "simple messaging channel description"
         val channelImportance = NotificationManager.IMPORTANCE_HIGH
         val channelEnableVibrate = true
         val channelLockScreenVisibility = NotificationCompat.VISIBILITY_PRIVATE
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         notificationChannel.enableVibration(channelEnableVibrate)
         notificationChannel.lockscreenVisibility = channelLockScreenVisibility
 
-        val notificationManager = this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(notificationChannel)
 
         val notifyIntent = Intent(this, SimpleNotificationActivity::class.java)
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 .setDefaults(NotificationCompat.DEFAULT_ALL) // Set primary color (important for Wear 2.0 Notifications).
                 .setColor(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
                 // Number of new notifications for API <24 (M and below) devices.
-                .setSubText("sub-text")
+                .setSubText("Sub text")
                 .setCategory(Notification.CATEGORY_MESSAGE)
                 // Sets priority for 25 and below. For 26 and above, 'priority' is deprecated for
                 // 'importance' which is set in the NotificationChannel.
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
         mNotificationManagerCompat.notify(NOTIFICATION_ID, notification)
     }
 
-    private fun generateMessagingStyleNotification() {
+    private fun generateComplexNotification() {
         // Main steps for building a MESSAGING_STYLE notification:
         //      0. Get your data
         //      1. Create/Retrieve Notification Channel for O and beyond devices (26+)
