@@ -74,18 +74,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-//    override fun onOptionsItemSelected(item: MenuItem) =
-//            when (item.itemId) {
-//                R.id.action_settings -> true
-//                else -> super.onOptionsItemSelected(item)
-//            }
-
     private fun showInterstitial() {
         // Show the ad if it's ready. Otherwise toast and reload the ad.
         if (interstitialAd != null) {
