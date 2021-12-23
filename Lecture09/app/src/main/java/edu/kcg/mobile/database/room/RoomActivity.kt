@@ -29,7 +29,7 @@ class RoomActivity : AppCompatActivity(), CoroutineScope {
         val db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java,
-            "room_db"
+            "room_db" // change the name if you get strange errors while running the app
         ).build()
         userDao = db.userDao()
 
@@ -73,9 +73,9 @@ class RoomActivity : AppCompatActivity(), CoroutineScope {
             it?.toString()?.toIntOrNull() ?: 0
         }
         val count = withContext(Dispatchers.IO) {
-            val users = userDao.findByName(name)
-            users.forEach { it.age = age }
-            userDao.update(users)
+            val users = userDao.findByName(name) // get all users by their name
+            users.forEach { it.age = age } // update the age
+            userDao.update(users) // persist the updated users into DB
         }
         withContext(Dispatchers.Main) {
             val s = if (count == 1) "" else "s"
@@ -86,7 +86,8 @@ class RoomActivity : AppCompatActivity(), CoroutineScope {
     private suspend fun deleteByName() {
         val name = findViewById<EditText>(R.id.input_name_room).text.toString()
         val count = withContext(Dispatchers.IO) {
-            userDao.delete(userDao.findByName(name))
+            val users = userDao.findByName(name) // get all users by their name
+            userDao.delete(users) // and then delete them from DB
         }
         withContext(Dispatchers.Main) {
             val s = if (count == 1) "" else "s"
