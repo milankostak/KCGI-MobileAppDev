@@ -2,6 +2,7 @@ package edu.kcg.mobile.multimedia
 
 import android.Manifest.permission.RECORD_AUDIO
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.media.MediaRecorder
@@ -78,13 +79,14 @@ class RecordingsActivity : AppCompatActivity() {
         return true // we can continue when the access was already granted in the past
     }
 
+    @SuppressLint("NewApi")
     private fun startAudioRecording() {
         btStartRecording.isEnabled = false
         btStopRecording.isEnabled = true
         btPlay.isEnabled = false
         btStop.isEnabled = false
 
-        mediaRecorder = MediaRecorder()
+        mediaRecorder = MediaRecorder(applicationContext)
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
@@ -112,6 +114,7 @@ class RecordingsActivity : AppCompatActivity() {
         btStopRecording.isEnabled = false
         btPlay.isEnabled = false
         btStop.isEnabled = true
+
         mediaPlayer = MediaPlayer()
         try {
             mediaPlayer.setDataSource(audioFilename)
@@ -127,6 +130,7 @@ class RecordingsActivity : AppCompatActivity() {
         btStopRecording.isEnabled = false
         btPlay.isEnabled = true
         btStop.isEnabled = false
+
         mediaPlayer.stop()
         mediaPlayer.release()
     }
